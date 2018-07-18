@@ -13,7 +13,7 @@ npm install
 Insert data
 
 ```sh
-node main.js -a "username: root, age: 21"
+node main.js -a '{"username": "root", "age": "21", "sub": { "param1": "aa", "param2" : "b" } }'
 ```
 
 Get data

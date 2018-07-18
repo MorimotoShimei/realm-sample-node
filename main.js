@@ -15,18 +15,16 @@ program
   .parse(process.argv);
 
 if (program.add) {
-  const args = program.add.split(',');
 
+  const json = JSON.parse(program.add);
   const obj = {};
-  args.forEach((arg) => {
-    const argArr = arg.split(':');
-    const key = argArr[0].trim();
-    const val = argArr[1];
-    obj[key] = val.trim();
-  });
+  obj['username'] = json.name;
+  obj['sub'] = json.sub;
   obj['uuid'] = getUnixTime();
-  obj['age'] = parseInt(obj.age);
+  obj['age'] = parseInt(json.age);
   obj['created_at'] = new Date();
+  // node main.js -a '{"name": "root", "age": "21", "sub": {"param1": "a", "param2":"b"} }'
+
   console.log(obj);
   model.add(obj);
   process.exit();
@@ -65,21 +63,18 @@ if (program.filtered) {
 }
 
 if (program.update) {
-  const args = program.update.split(',');
+  const json = JSON.parse(program.update);
   const obj = {};
-  args.forEach((arg) => {
-    const argArr = arg.split(':');
-    const key = argArr[0].trim();
-    const val = argArr[1];
-    obj[key] = val.trim();
-  });
-  if (obj.age) {
-    obj['age'] = parseInt(obj.age);
-  }
+  obj['username'] = json.name;
+  obj['sub'] = json.sub;
+  obj['uuid'] = json.uuid;
+  obj['age'] = parseInt(json.age);
+  obj['created_at'] = new Date();
   const uuid = obj.uuid;
   delete obj.uuid;
-  const datas = model.update(uuid, obj);
+  model.update(uuid, obj);
   process.exit();
+  // node main.js -u '{ "uuid": "uuid_1531877694720" ,"name": "toor", "age":"31", "sub": {"param1": "ccc", "param2":"ff"} }'
 }
 
 function getUnixTime() {

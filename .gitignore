@@ -2,6 +2,9 @@
 db/*
 !db/empty.file
 
+# vscode
+.vscode
+
 # Logs
 logs
 *.log
