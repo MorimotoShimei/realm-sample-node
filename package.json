@@ -1,0 +1,12 @@
+{
+  "name": "realm-first-sample",
+  "version": "0.0.1",
+  "main": "main.js",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.16.0",
+    "express": "^4.16.3",
+    "realm": "^2.13.0",
+    "winston": "^3.0.0"
+  }
+}
